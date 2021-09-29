@@ -19,17 +19,17 @@ from config.auth import *
 def main():
     selectHours = 2
     minStart = 0
-    electricityPriceList = (0.240, 0.205, 0.011, 0.103, 0.034, 0.045, 0.203, 0.554, 0.231, 0.210, 0.615, 0.271, 0.362,
-    0.40, 0.232, 0.121, 0.131, 0.324, 0.745, 0.253, 0.554, 0.121, 0.871, 0.695)
-    minPriceList = (999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999,
-    999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999)
+    electricityPriceList = [0.240, 0.205, 0.011, 0.103, 0.034, 0.045, 0.203, 0.554, 0.231, 0.210, 0.615, 0.271, 0.362,
+    0.40, 0.232, 0.121, 0.131, 0.324, 0.745, 0.253, 0.554, 0.121, 0.871, 0.695]
+    minPriceList = [999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999,
+    999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999]
 
 
     # Genero la lista de precios en función del número de horas seleccionadas
-    for i in electricityPriceList:
-        end = i + selectHours
-        for j in end:
-        minPriceList(i) = electricityPriceList (j)
+    for start in len(electricityPriceList):
+        end = start + selectHours
+        for price in electricityPriceList:
+            minPriceList(start) += price
 
 
     # Busco el mínimo de esa lista y el índice

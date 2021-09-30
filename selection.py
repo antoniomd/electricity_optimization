@@ -24,36 +24,29 @@ def main():
     minPriceList = [999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0,
     999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0]
 
-    for i in range(0,len(electricityPriceList)):
+    for i in range(0,len(electricityPriceList) - selectHours + 1):
         start = i
         end = i + selectHours 
-        end = (min(end,len(electricityPriceList)))
         minPrice = 0
         print("el inicio es "+str(i))
+
         for i in range(start, end):
             print(electricityPriceList[i])
             minPrice += electricityPriceList[i]
+        
+        minPriceList[start] = minPrice
         print("el fin es " +str(i))
-        print("la suma del primero es " +str(minPriceList[start]))
-
-""""
-    # Genero la lista de precios en función del número de horas seleccionadas
-    for start in electricityPriceList:
-        end = start + selectHours
-        priceSum = 0
-        for price in electricityPriceList[start:end]:
-            priceSum += price
-        minPriceList[start] = priceSum
+        print("la suma es " +str(minPriceList[start]))
 
     # Busco el mínimo de esa lista y el índice
     minPrice = min(minPriceList)
-    startEquip = list.index(minPrice)
+    startEquip = minPriceList.index(minPrice)
     stopEquip = startEquip + selectHours
 
     print(minPrice)
     print(startEquip)
     print(stopEquip)
-"""
+
 
 if __name__ == "__main__":
 	main()

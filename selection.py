@@ -14,32 +14,30 @@ Usage:
 # Importo la configuración del fichero
 from config.auth import *
 
+def startEquipRoutine(onHours):
+# Vacio la lista de precios auxiliar que uso para calcular el mínimo precio en el rango de horas seleccionado
+    minPriceList = []
+
+    # Relleno la lista de precios auxiliar que uso para calcular cuando arrancar los equipos
+    for i in range(0, len(priceList)+1-onHours):
+        minPriceList.append(sum(priceList[i:i+onHours]))
+
+    # Busco el mínimo de esa lista auxiliar para encontrar del rango delimitado por las horas
+    startDevice = minPriceList.index(min(minPriceList))
+    stopDevice = startDevice + onHours
+
+    # Devuelvo la hora de aranque y de paro del dispositivo
+    return startDevice, stopDevice
 
 # Realizo la elección del minimo valor de la electricidad en el número de horas seleccionadas
 def main():
 
-    """
-    Las cojo al final del fichero auth
-    selectHours = 2
-    electricityPriceList = [0.240, 0.205, 0.011, 0.103, 0.034, 0.045, 0.203, 0.554, 0.231, 0.210, 0.615, 0.271, 0.362,
-    0.40, 0.232, 0.121, 0.131, 0.324, 0.745, 0.253, 0.554, 0.121, 0.871, 0.695]
-    minPriceList = [999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0,
-    999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0]
-    """
-    # Vacio la lista de precios auxiliar que uso para calcular el mínimo precio en el rango de horas seleccionado
-    minPriceList = []
+    # Meto por Terminal el número de horas que estará en marcha el dispositivo
+    onHours = int(input("¿Cuántas horas estará en marcha el dispositivo? "))
 
-    for i in range(0, len(electricityPriceList)+1-selectHours):
-        minPriceList.append(sum(electricityPriceList[i:i+selectHours]))
-
-    # Busco el mínimo de esa lista y el índice
-#    minPrice = min(minPriceList)
-    print(minPriceList)
-    startEquip = minPriceList.index(min(minPriceList))
-    stopEquip = startEquip + selectHours
-
-    print(startEquip)
-    print(stopEquip)
+    # Llamo a la función que determina el arranque paro del dispositivo
+    startDevice, stopDevice = startEquipRoutine(onHours)
+    print(startDevice, stopDevice)
 
 
 if __name__ == "__main__":

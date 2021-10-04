@@ -14,7 +14,7 @@ Usage:
 # Importo la configuración del fichero
 from config.auth import *
 
-def startEquipRoutine(onHours):
+def startStopRoutine(onHours):
 # Vacio la lista de precios auxiliar que uso para calcular el mínimo precio en el rango de horas seleccionado
     minPriceList = []
 
@@ -36,7 +36,7 @@ def main():
     onHours = int(input("¿Cuántas horas estará en marcha el dispositivo? "))
 
     # Llamo a la función que determina el arranque paro del dispositivo
-    startDevice, stopDevice = startEquipRoutine(onHours)
+    startDevice, stopDevice = startStopRoutine(onHours)
     print(startDevice, stopDevice)
 
 

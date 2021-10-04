@@ -26,27 +26,18 @@ def main():
     minPriceList = [999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0,
     999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0, 999.0]
     """
+    # Vacio la lista de precios auxiliar que uso para calcular el mínimo precio en el rango de horas seleccionado
+    minPriceList = []
 
-    for i in range(0,len(electricityPriceList) - selectHours + 1):
-        start = i
-        end = i + selectHours 
-        minPrice = 0
-        print("el inicio es "+str(i))
-
-        for i in range(start, end):
-            print(electricityPriceList[i])
-            minPrice += electricityPriceList[i]
-        
-        minPriceList[start] = minPrice
-        print("el fin es " +str(i))
-        print("la suma es " +str(minPriceList[start]))
+    for i in range(0, len(electricityPriceList)+1-selectHours):
+        minPriceList.append(sum(electricityPriceList[i:i+selectHours]))
 
     # Busco el mínimo de esa lista y el índice
-    minPrice = min(minPriceList)
-    startEquip = minPriceList.index(minPrice)
+#    minPrice = min(minPriceList)
+    print(minPriceList)
+    startEquip = minPriceList.index(min(minPriceList))
     stopEquip = startEquip + selectHours
 
-    print(minPrice)
     print(startEquip)
     print(stopEquip)
 

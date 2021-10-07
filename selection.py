@@ -14,6 +14,7 @@ Usage:
 # Importo la configuración del fichero
 from config.auth import *
 
+# Seleccionar el intervalo de horas indicado con el precio más bajo
 def startStopRoutine(onHours):
 # Vacio la lista de precios auxiliar que uso para calcular el mínimo precio en el rango de horas seleccionado
     minPriceList = []
@@ -29,9 +30,22 @@ def startStopRoutine(onHours):
     # Devuelvo la hora de aranque y de paro del dispositivo
     return startDevice, stopDevice
 
+
+# Seleccionar el número de horas indicados cuyos precios sean más bajos
+def minSelection(onHours, hour):
+    if hour == 23:
+        enableHours = 0
+    minPriceList2 = sorted(priceList)
+    priceLimit = minPriceList2[onHours]
+    if priceLimit < priceList[hour] and enableHours <= onHours:
+        enableHours += 1
+        enable = 1
+    else:
+        enable = 0
+
+
 # Realizo la elección del minimo valor de la electricidad en el número de horas seleccionadas
 def main():
-
     # Meto por Terminal el número de horas que estará en marcha el dispositivo
     onHours = int(input("¿Cuántas horas estará en marcha el dispositivo? "))
 
